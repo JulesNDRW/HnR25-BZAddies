@@ -1,3 +1,12 @@
+@keyframes backgroundAnimation {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: center; 
+    }
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -20,3 +29,35 @@ body {
     font-size: 2.0rem;
     margin: 0.5rem;
 }
+
+.grid {
+
+	width: 320px;
+	height: 320px;
+	border: solid black 1px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.grid div {
+	width: 20px;
+	height: 20px;
+}
+
+.turtle {
+	background-color: purple;
+	border-radius: 10px;
+}
+
+.jellyfish {
+	background-color: green;
+}
+
+.laser {
+	background-color: orange;
+}
+
+.boom {
+	background-color: red;
+}
+
