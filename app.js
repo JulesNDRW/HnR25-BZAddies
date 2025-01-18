@@ -7,6 +7,8 @@ let turtlesId
 let isGoingRight = true
 let direction = 1
 let results = 0
+let pressedTime = null
+let counter = 0
 
 for (let i = 0; i < width * width; i++) {
     const square = document.createElement("div")
@@ -133,7 +135,15 @@ function shoot(e) {
     }
 
     if (e.key === "d") {
-        laserId = setInterval(moveLaser, 100)
+        if (counter === 0) {
+            counter = 1
+            pressedTime = Date.now()
+        } else if (counter === 1 && Date.now() - pressedTime < 1000) {
+            laserId = setInterval(moveLaser, 100)
+        } else {
+            counter = 0
+            pressedTime = Date.now()
+        }
     }
 }
 
