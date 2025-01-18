@@ -108,7 +108,13 @@ function shoot(e) {
 
     function moveLaser() {
         squares[currentLaserIndex].classList.remove("laser")
-        currentLaserIndex -= width
+        currentLaserIndex -= 1
+
+        if (currentLaserIndex % width === width - 1|| currentLaserIndex < 0){
+            clearInterval(laserId);
+            return;
+        }
+
         squares[currentLaserIndex].classList.add("laser")
 
         if (squares[currentLaserIndex].classList.contains("turtle")) {
@@ -126,7 +132,7 @@ function shoot(e) {
         }
     }
 
-    if (e.key === "ArrowUp") {
+    if (e.key === "d") {
         laserId = setInterval(moveLaser, 100)
     }
 }
