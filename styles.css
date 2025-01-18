@@ -1,3 +1,22 @@
 body {
-    background-image: url('bg3.png');
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('assets/BG_placeholder.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#start-screen {
+    text-align: center;
+    color: white;
+    font-family:'Times New Roman', Times, serif;
+}
+#start-screen h1 {
+    font-size: 2.0rem;
+    margin: 0.5rem;
 }
