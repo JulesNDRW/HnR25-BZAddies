@@ -106,7 +106,9 @@ turtlesId = setInterval(moveTurtles, 600)
 
 function shoot(e) {
     let laserId
+    let laserId2
     let currentLaserIndex = currentJellyfishIndex
+    let ogLaserIndex = currentJellyfishIndex
 
     function moveLaser() {
         squares[currentLaserIndex].classList.remove("laser")
@@ -134,12 +136,40 @@ function shoot(e) {
         }
     }
 
+    function moveLaser2() {
+        squares[ogLaserIndex].classList.remove("laser")
+        ogLaserIndex += 1
+
+        if ((ogLaserIndex + 3) % width === width - 1|| ogLaserIndex < 0){
+            clearInterval(laserId2);
+            return;
+        }
+
+        squares[ogLaserIndex].classList.add("laser")
+
+        if (squares[ogLaserIndex].classList.contains("turtle")) {
+            squares[ogLaserIndex].classList.remove("laser")
+            squares[ogLaserIndex].classList.remove("turtle")
+            squares[ogLaserIndex].classList.add("boom")
+
+            setTimeout(() => squares[ogLaserIndex].classList.remove("boom"), 300)
+            clearInterval(laserId2)
+
+            const turtleRemoved = turtleEnemies.indexOf(ogLaserIndex)
+            turtlesRemoved.push(turtleRemoved)
+            results++
+            resultDisplay.innerHTML = results
+        }
+    }
+
+
     if (e.key === "d") {
         if (counter === 0) {
             counter = 1
             pressedTime = Date.now()
         } else if (counter === 1 && Date.now() - pressedTime < 1000) {
             laserId = setInterval(moveLaser, 100)
+            laserId2 = setInterval(moveLaser2, 100)
         } else {
             counter = 0
             pressedTime = Date.now()
