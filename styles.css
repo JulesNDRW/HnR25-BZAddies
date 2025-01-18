@@ -14,10 +14,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('assets/BG_placeholder.png');
+    background-image: url('assets/bg6.png');
     background-size: cover;
     background-repeat: repeat-y;
     background-position: center;
+    animation: backgroundAnimation 10s linear infinite;
 }
 
 #start-screen {
