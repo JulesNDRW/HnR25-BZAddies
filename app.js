@@ -5,7 +5,7 @@ const width = 15
 const turtlesRemoved = []
 let turtlesId
 let isGoingRight = true
-let direction = 1
+let direction = 2
 let results = 0
 let pressedTime = null
 let counter = 0
@@ -20,9 +20,7 @@ const squares = Array.from(document.querySelectorAll(".grid div"))
 
 
 const turtleEnemies = [
-    0, 
-    15, 
-    30
+    0
 ]
 
 function draw() {

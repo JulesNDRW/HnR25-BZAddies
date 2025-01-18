@@ -35,25 +35,28 @@ body {
 }
 
 .grid {
-	width: 320px;
-	height: 320px;
+	width: 500px;
+	height: 500px;
 	border: solid black 1px;
 	display: flex;
 	flex-wrap: wrap;
 }
 
 .grid div {
-	width: 20px;
-	height: 20px;
+	width: 30px;
+	height: 30px;
 }
 
 .turtle {
-	background-color: purple;
-	border-radius: 10px;
+	background-image: url('assets/turtle.png');
+    height: auto;
+    width: auto;
 }
 
 .jellyfish {
-	background-color: green;
+	background-image: url('assets/jellyfish.png');
+    height: auto;
+    width: auto;
 }
 
 .laser {
