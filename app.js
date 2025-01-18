@@ -110,7 +110,7 @@ function shoot(e) {
         squares[currentLaserIndex].classList.remove("laser")
         currentLaserIndex -= 1
 
-        if (currentLaserIndex % width === width - 1|| currentLaserIndex < 0){
+        if ((currentLaserIndex + 3) % width === width - 1|| currentLaserIndex < 0){
             clearInterval(laserId);
             return;
         }
