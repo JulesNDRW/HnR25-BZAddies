@@ -1,6 +1,6 @@
 const grid = document.querySelector(".grid")
 const resultDisplay = document.querySelector(".results")
-let currentJellyfishIndex = 22 /*dbl chk, hard code*/
+let currentJellyfishIndex = 31 /*dbl chk, hard code*/
 const width = 9
 const turtlesRemoved = []
 let turtlesId
