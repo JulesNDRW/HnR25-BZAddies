@@ -35,26 +35,26 @@ body {
 }
 
 .grid {
-	width: 500px;
-	height: 500px;
+	width: 1152px;
+	height: 1152px;
 	border: solid black 1px;
 	display: flex;
 	flex-wrap: wrap;
 }
 
 .grid div {
-	width: 30px;
-	height: 30px;
+	width: 128px;
+	height: 128px;
 }
 
 .turtle {
-	background-image: url('assets/turtle.png');
+	background-image: url('assets/turtle2.png');
     height: auto;
     width: auto;
 }
 
 .jellyfish {
-	background-image: url('assets/jellyfish.png');
+	background-image: url('assets/jellyfish2.png');
     height: auto;
     width: auto;
 }
