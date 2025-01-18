@@ -113,6 +113,11 @@ function moveTurtles() { /*test*/
         clearInterval(turtlesId)
     }
 
+    if (currentJellyfishIndex > 56) {
+        resultDisplay.innerHTML = "GAME OVER"
+        clearInterval(turtlesId)
+    }
+
     if (turtlesRemoved.length === turtleEnemies.length) {
         resultDisplay.innerHTML = "YOU WIN"
         clearInterval(turtlesId)

@@ -60,7 +60,9 @@ body {
 }
 
 .laser {
-	background-color: orange;
+	background-image: url('assets/pixilart-drawing.png');
+    height: auto;
+    width: auto;
 }
 
 .boom {
