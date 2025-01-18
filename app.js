@@ -1,11 +1,11 @@
 const grid = document.querySelector(".grid")
 const resultDisplay = document.querySelector(".results")
-let currentJellyfishIndex = 202
-const width = 15
+let currentJellyfishIndex = 22 /*dbl chk, hard code*/
+const width = 9
 const turtlesRemoved = []
 let turtlesId
 let isGoingRight = true
-let direction = 2
+let direction = -1
 let results = 0
 let pressedTime = null
 let counter = 0
@@ -16,12 +16,31 @@ for (let i = 0; i < width * width; i++) {
 }
 
 const squares = Array.from(document.querySelectorAll(".grid div"))
-// test msg
 
+function getRandomTurtlePosition() {
+    return Math.floor(Math.random() * width) * width - 2; //hardcode 1
+}
 
-const turtleEnemies = [
-    0
-]
+let turtleEnemies = []
+turtleEnemies.push(getRandomTurtlePosition())
+
+function spawnTurtle() {
+    
+    const randomDelay = Math.floor(Math.random() * 1500) + 500;
+    
+    setTimeout(() => {
+        let newTurtlePos;
+        do {
+            newTurtlePos = getRandomTurtlePosition();
+        } while (turtleEnemies.includes(newTurtlePos)); 
+
+        turtleEnemies.push(newTurtlePos);  
+        squares[newTurtlePos].classList.add("turtle");  
+        spawnTurtle();
+    }, randomDelay);
+}
+
+spawnTurtle();
 
 function draw() {
     for (let i = 0; i < turtleEnemies.length; i++) {
@@ -48,13 +67,13 @@ function moveJellyfish(e) {
             if (currentJellyfishIndex % width !== 0) currentJellyfishIndex -= 1
             break
         case "l":
-            if (currentJellyfishIndex % width < width - 1) currentJellyfishIndex += 1
+            if (currentJellyfishIndex % width !== width - 1) currentJellyfishIndex += 1
             break
         case "j":
-            if (currentJellyfishIndex + width < width * width) currentJellyfishIndex += (width + 1)
+            if (currentJellyfishIndex + width < width * width) currentJellyfishIndex += (width) /*test*/
             break
         case "k":
-            if (currentJellyfishIndex - width >= 0) currentJellyfishIndex -= (width + 1)
+            if (currentJellyfishIndex - width >= 0) currentJellyfishIndex -= (width) /*test*/
             break
     }
     squares[currentJellyfishIndex].classList.add("jellyfish")
@@ -62,14 +81,14 @@ function moveJellyfish(e) {
 
 document.addEventListener("keydown", moveJellyfish)
 
-function moveTurtles() {
+function moveTurtles() { /*test*/
     const leftEdge = turtleEnemies[0] % width === 0
     const rightEdge = turtleEnemies[turtleEnemies.length - 1] % width === width - 1
     remove()
 
     if (rightEdge && isGoingRight) {
         for (let i = 0; i < turtleEnemies.length; i++) {
-            turtleEnemies[i] += width + 1
+            turtleEnemies[i] -= width - 1
             direction = -1
             isGoingRight = false
         }
@@ -77,7 +96,7 @@ function moveTurtles() {
 
     if (leftEdge && !isGoingRight) {
         for (let i = 0; i < turtleEnemies.length; i++) {
-            turtleEnemies[i] += width - 1
+            turtleEnemies[i] -= width + 1
             direction = 1
             isGoingRight = true
         }
