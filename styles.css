@@ -58,6 +58,12 @@ body {
     width: auto;
 }
 
+.fish {
+    background-image: url('assets/clownfish2.png');
+    height: auto;
+    width: auto;
+}
+
 .laser {
 	background-image: url('assets/pixilart-drawing.png');
     height: auto;

@@ -201,3 +201,42 @@ function shoot(e) {
 }
 
 document.addEventListener('keydown', shoot)
+
+
+// Fish position and movement
+let fishIndex = 0
+const fishMoveInterval = 1000; // Move the fish every 1 second
+
+function moveFish() {
+    squares[fishIndex].classList.remove("fish"); // Remove fish from current position
+
+    // Generate a random movement direction
+    const possibleMoves = [-1, 1, -width, width]; // Left, Right, Up, Down
+    let randomMove;
+
+    do {
+        randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+    } while (
+        fishIndex + randomMove < 0 || // Prevent moving out of bounds (top)
+        fishIndex + randomMove >= width * width || // Prevent moving out of bounds (bottom)
+        (randomMove === -1 && fishIndex % width === 0) || // Prevent moving left out of bounds
+        (randomMove === 1 && (fishIndex + 1) % width === 0) // Prevent moving right out of bounds
+    );
+
+    // Update fish position
+    fishIndex += randomMove;
+    squares[fishIndex].classList.add("fish");
+
+    // Check for collision with jellyfish
+    if (fishIndex === currentJellyfishIndex) {
+        resultDisplay.innerHTML = "GAME OVER";
+        clearInterval(turtlesId); // Stop turtle movement
+        clearInterval(fishId); // Stop fish movement
+    }
+}
+
+// Add the fish to the grid
+squares[fishIndex].classList.add("fish");
+
+// Set the fish to move at regular intervals
+const fishId = setInterval(moveFish, fishMoveInterval);
