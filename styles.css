@@ -65,7 +65,7 @@ body {
 }
 
 .boom {
-	background-color: red;
+	background-image: url('assets/turtledie.png');
 }
 
 .results {
