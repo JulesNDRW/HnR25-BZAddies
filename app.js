@@ -86,25 +86,25 @@ function moveTurtles() { /*test*/
     const rightEdge = turtleEnemies[turtleEnemies.length - 1] % width === width - 1
     remove()
 
+    // Change direction if turtles reach the grid edge
     if (rightEdge && isGoingRight) {
-        for (let i = 0; i < turtleEnemies.length; i++) {
-            turtleEnemies[i] -= width - 1
-            direction = -1
-            isGoingRight = false
-        }
+        direction = -1;
+        isGoingRight = false;
+    } else if (leftEdge && !isGoingRight) {
+        direction = 1;
+        isGoingRight = true;
     }
 
-    if (leftEdge && !isGoingRight) {
-        for (let i = 0; i < turtleEnemies.length; i++) {
-            turtleEnemies[i] -= width + 1
-            direction = 1
-            isGoingRight = true
-        }
-    }
-
+    // Move turtles horizontally (left or right)
     for (let i = 0; i < turtleEnemies.length; i++) {
-        turtleEnemies[i] += direction
+        turtleEnemies[i] += direction;
     }
+
+    // Move turtles upwards by 1 unit at consistent intervals
+    for (let i = 0; i < turtleEnemies.length; i++) {
+        turtleEnemies[i] -= width; // Move upwards by 1 row
+    }
+
 
     draw()
 
