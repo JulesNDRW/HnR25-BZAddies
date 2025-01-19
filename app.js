@@ -60,7 +60,11 @@ function remove() {
     }
 }
 
+let isParalyzed = false;
+
 function moveJellyfish(e) {
+    if (isParalyzed) return;
+
     squares[currentJellyfishIndex].classList.remove("jellyfish")
     switch (e.key) {
         case "h":
@@ -76,10 +80,20 @@ function moveJellyfish(e) {
             if (currentJellyfishIndex - width >= 0) currentJellyfishIndex -= (width) /*test*/
             break
     }
-    squares[currentJellyfishIndex].classList.add("jellyfish")
+    squares[currentJellyfishIndex].classList.add("jellyfish");
+    checkCollisionWithFish();
 }
 
 document.addEventListener("keydown", moveJellyfish)
+
+function checkCollisionWithFish(){
+    if (currentJellyfishIndex === fishIndex) {
+        isParalyzed = true;
+        setTimeout(() => {
+            isParalyzed = false;
+        }, 1000);
+    }
+}
 
 function moveTurtles() { /*test*/
     const leftEdge = turtleEnemies[0] % width === 0
@@ -204,7 +218,7 @@ document.addEventListener('keydown', shoot)
 
 
 // Fish position and movement
-let fishIndex = 0
+let fishIndex = Math.floor(Math.random() * (width * width));
 const fishMoveInterval = 1000; // Move the fish every 1 second
 
 function moveFish() {
